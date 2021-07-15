@@ -146,7 +146,7 @@ KubeletClientCrt:  #Kubelet client cert for Tunnel-edge to access Kubelet
   openssl req -new -key kubelet_client.key -out kubelet_client.csr
 
   # Generate Self Signed certificate（Notice: it is Kubernetes cluster's ca.crt and ca.key, In Kubeadm install method，ca.crt and ca.key path at /etc/kubernetes/pki）
-  openssl ca -in kubelet-client.csr -out kubelet-client.crt -cert ca.crt -keyfile ca.key
+  openssl x509 -req -days 365 -in kubelet_client.csr -out kubelet_client.crt -CA ca.crt  -CAkey ca.key
   ```
 
   BASE64 encoding KubeletClientKey and KubeletClientCrt
